@@ -13,9 +13,7 @@
     --text-color: #FFFFFF;
     --bg-color: #f8f9f9;
 }
-p,q,span {
-    color: var(--card-color);
-}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -25,7 +23,7 @@ p,q,span {
     background-color: var(--bg-color);
 }
 
-.quote-box {
+.quote {
     background-color: #FFFFFF;
     max-width: 50%;
     padding: 2.5rem;
@@ -33,26 +31,29 @@ p,q,span {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
+    max-height: 70%; /* Ajusta según tu diseño */
+    overflow-y: auto;
     
 
   }
 
   
 
-  .text-quote {
+  .text-quote-box {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;  
   }
 
   q {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 500;
+    
    
   }
 
-  .author {
+  .author-box {
     padding: 1.5rem;
     text-align: right;
     padding-right: 0px;
