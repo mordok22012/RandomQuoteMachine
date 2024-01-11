@@ -1,67 +1,53 @@
-//$("selector").accion 
-
-/* codigo para para ejecutar jquery cuando carga por completo la pagina
-
-$("document").ready(function() {
-
-} );
-
-"forma rapida"
-$(function() {
-
-} )
-
-" usar css dentro de jquery"
-
-    $(function() {
-        $("p").css({"background-color": "red"})
-} )
-
-" manejar eventos "
-
-$(function() {
-    $("button").click(function() {
-        alert("hola");
-    } )
-} )
-
-*/
-let index;
-let max = 10;
-let min = 0;
-
-
-let colors = 
-    ["blue","crimson","red","green","orange","purple","pink","grey","indigo","brown","yellow"];
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const apiUrl = "https://quotesondesign.com/wp-json/wp/v2/posts";
+    const colors = 
+    ["blue","crimson","red","green","orange","purple","pink","grey","indigo","brown","yellow"];
+    
+    
+    let refrescarDiseño = () => {
+        fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error de red: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const colorslength = colors.length - 1;
+            const colorsIndex = Math.floor(Math.random() * (colorslength - 0 + 1)) + 0;
+            const dataLength = data.length -1;
+            const dataIndex= Math.floor(Math.random() * (dataLength - 0 + 1)) + 0;
 
-   document.getElementById("new-quote").addEventListener("click", function() {
-    fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-        max = (data.length)-1;
-        index=Math.floor(Math.random() * (max - min) + min); 
-        document.getElementById("text").innerHTML = data[index].content.rendered;
-        document.getElementById("author").innerHTML = data[index].title.rendered;
-   
-        $(":header").css("color", colors[index]);
-        $("body").css("background-color", colors[index]);
-        $("button").css("background-color", colors[index] );
+            document.getElementById("text").innerHTML = data[dataIndex].content.rendered;
+            document.getElementById("author").innerHTML = `- ${data[dataIndex].title.rendered}`;
        
-    } )
-    .catch(error => {
-        console.error("Error al obtener la frase: ", error);
-      });
+            
+            $("body").css("background-color", colors[colorsIndex]);
+            $(".text").css("color", colors[colorsIndex] );
+            $(".btn").css("background-color", colors[colorsIndex] );
+            $(".btn").css("background-color:hover", colors[colorsIndex] );
+            $(".text").hide().fadeIn(1000);
+            
+            
+           
+        } )
+        .catch(error => {
+            console.error("Error al obtener la frase: ", error);
+          });
+    };
 
-   } );
+    let sendTweetQuote = () => {
+        $("a").attr("href","https://twitter.com/intent/tweet?text=" + document.getElementById("text").textContent + " " + "- " + document.getElementById("author").textContent);
+    }
+
+    refrescarDiseño();
+    
+    document.getElementById("tweet-quote").addEventListener("click", sendTweetQuote);
+
+    document.getElementById("new-quote").addEventListener("click", refrescarDiseño );
+
+
 
     
 

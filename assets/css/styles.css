@@ -1,37 +1,26 @@
-/* paleta uno
-
- --bg-color: #03363d;
- --color-2: #174d4d;
- --color-3: #FFFFFF;
- --color-4: #f8f9f9;
- --primary-color: #f8f9f9;
-*/
-
-:root {
-    --color-1: #03363d;
-    --card-color: #174d4d;
-    --text-color: #FFFFFF;
-    --bg-color: #f8f9f9;
-}
 
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 100vh;
-    background-color: var(--bg-color);
+    
 }
 
-.quote {
+.quote-box {
     background-color: #FFFFFF;
-    max-width: 50%;
+    max-width: 60%;
     padding: 2.5rem;
     margin-bottom: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    max-height: 70%; /* Ajusta según tu diseño */
+    max-height: 80%; /* Ajusta según tu diseño */
     overflow-y: auto;
     
 
@@ -59,8 +48,8 @@
     padding-right: 0px;
   }
 
-  .author span {
-    font-size: 1.4rem;
+  .author-box span {
+    font-size: 1.5rem;
   }
 
  
@@ -80,17 +69,16 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border: 2px solid var(--card-color);
+    border: 2px solid;
     border-radius: 5px;
     color: #FFFFFF;
-    background-color: var(--card-color);
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+    
+    transition: 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
   }
 
   .btn:hover {
-    background-color: var(--color-1);
     color: #ffffff;
-    border-color: #ffffff;
+    opacity: 0.8;
   }
 
   a {
@@ -101,17 +89,15 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border: 2px solid var(--card-color);
     border-radius: 5px;
     color: #FFFFFF;
-    background-color: var(--card-color);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
     
     
   }
 
   a:hover {
-    background-color: var(--color-1);
+    
     color: #ffffff;
     border-color: #ffffff;
   }
@@ -123,5 +109,25 @@
 
   
   footer {
-    background-color: aliceblue;
+    color: #FFFFFF;
+    font-size: 1.2rem;
   }
+
+  /* Media Query para Pantallas Pequeñas (por ejemplo, celulares) */
+@media only screen and (max-width: 800px) {
+  .wrapper {
+    width: 90vw;
+  }
+  
+  .author-box {
+    padding-right: inherit;
+    text-align: center;
+  }
+
+  .buttons {
+    flex-direction: column;
+
+  }
+
+  .btn {margin-bottom: .5rem;}
+}
